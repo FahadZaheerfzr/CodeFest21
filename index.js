@@ -8,8 +8,7 @@ app.get("/", (req, res)=> {
 app.post("/dialogflow", express.json(), (req, res) => {
     const agent = new WebhookClient({ request: req, response: res });
     let intentMap = new Map();
-    intentMap.set("Default Welcome Intent", help);
-    intentMap.set("Default Fallback Intent", defaultFallback);
+    intentMap.set("help", welcome);
     agent.handleRequest(intentMap);
 });
 
