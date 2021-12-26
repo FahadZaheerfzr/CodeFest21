@@ -44,6 +44,20 @@ const TicketSchema = new mongoose.Schema({
     timestamps:true
 });
 
+const UserSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        
+    },
+    number:{
+        type:Number
+    }
+},
+{
+    timestamps:true
+});
+
 const Product = mongoose.model("Product", ProductSchema);
 const Ticket = mongoose.model("Ticket", TicketSchema);
-module.exports = [Product, Ticket];
+const User = mongoose.model("User", UserSchema);
+module.exports = [Product, Ticket,User];

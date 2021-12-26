@@ -1,9 +1,10 @@
 const express = require("express");
 const { WebhookClient } = require("dialogflow-fulfillment");
 const mongoose = require("mongoose");
-const [ProductModel,TicketModel] = require("./schema");
+const bodyParser = require('body-parser');
+const [ProductModel,TicketModel,UserModel] = require("./schema");
 const app = express();
-
+app.use(bodyParser.urlencoded({ extended: true }));
 mongoose.connect(
     `mongodb+srv://CodeFest21:CodeFest%4021@codefestcluster.f8iws.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`,
     {
@@ -60,6 +61,10 @@ app.get("/add_ticket", async (request, response) => {
     }
 });
 
+app.get("/add_user/:name/:number", async (request, response) => {
+
+});
+
 
 
 app.get("/getTicket/:num", async (req, response) => {
@@ -70,6 +75,7 @@ app.get("/getTicket/:num", async (req, response) => {
       response.status(500).send(error);
     }
   });
+
 
 app.get("/", (req, res) => {
     res.send("I have listened");
@@ -88,7 +94,20 @@ app.post("/dialogflow", express.json(), (req, res) => {
 function createUser(agent){
     const username = agent.contexts[1].parameters["person.original"];
     const number= agent.contexts[1].parameters["number.original"];
-    agent.add('I am working on it. your account will be created shorly.')
+    
+    if(username && number){
+    const user = new UserModel({name:username, number:number});
+  
+    try {
+      await user.save();
+      agent.add('Your account has been created. Happy Shopping!');
+    } catch (error) {
+      response.status(500).send(error);
+    }
+    }
+    else{
+        agent.add('It appears something went wrong. Please tell me to generate a ticket if you want');
+    }
 }
 
 function welcome(agent) {
