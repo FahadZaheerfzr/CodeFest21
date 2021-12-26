@@ -80,7 +80,7 @@ app.post("/dialogflow", express.json(), (req, res) => {
     console.log(req.body)
     let intentMap = new Map();
     intentMap.set("help", welcome);
-    intentMap.set("createUser", createUser);
+    intentMap.set("createUser - custom - custom", createUser);
     agent.handleRequest(intentMap);
 });
 
