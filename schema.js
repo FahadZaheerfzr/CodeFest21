@@ -38,7 +38,6 @@ const TicketSchema = new mongoose.Schema({
     number: {
         type: Number,
     },
-    
 },
 {
     timestamps:true
