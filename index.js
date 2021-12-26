@@ -77,7 +77,7 @@ app.get("/", (req, res) => {
 
 app.post("/dialogflow", express.json(), (req, res) => {
     const agent = new WebhookClient({ request: req, response: res });
-    console.log("\n\n\n\n");
+    
     
     let intentMap = new Map();
     intentMap.set("help", welcome);
@@ -87,7 +87,9 @@ app.post("/dialogflow", express.json(), (req, res) => {
 
 function createUser(agent){
     console.log(agent);
-    console.log(agent.body.queryResult.outputContexts[1].parameters);
+    console.log("\n\n\n\n");
+    console.log(agent.parameters);
+    console.log(agent.context);
     agent.add('I am working on it. your account will be created shorly.')
 }
 
