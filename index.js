@@ -22,7 +22,7 @@ async function runSample(messageText, projectId = 'edbot-mjyx') {
   // A unique identifier for the given session
   // Create a new session
   const sessionClient = new dialogflow.SessionsClient({
-    keyFilename: "../edbot-mjyx-19dda7308a04.json"
+    keyFilename: "./edbot-mjyx-19dda7308a04.json"
   });
   const sessionPath = sessionClient.projectAgentSessionPath(
     projectId,
