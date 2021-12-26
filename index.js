@@ -86,10 +86,8 @@ app.post("/dialogflow", express.json(), (req, res) => {
 });
 
 function createUser(agent){
-    console.log(agent);
-    console.log("\n\n\n\n");
-    console.log(agent.parameters);
-    console.log(agent.contexts[1].parameters);
+    const username = agent.contexts[1].parameters["person.original"];
+    const number= agent.contexts[1].parameters["number.original"];
     agent.add('I am working on it. your account will be created shorly.')
 }
 
