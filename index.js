@@ -89,7 +89,7 @@ function createUser(agent){
     console.log(agent);
     console.log("\n\n\n\n");
     console.log(agent.parameters);
-    console.log(agent.context);
+    console.log(agent.context.contexts[1]);
     agent.add('I am working on it. your account will be created shorly.')
 }
 
