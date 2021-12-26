@@ -91,7 +91,7 @@ app.post("/dialogflow", express.json(), (req, res) => {
     agent.handleRequest(intentMap);
 });
 
-function createUser(agent){
+ async function createUser(agent){
     const username = agent.contexts[1].parameters["person.original"];
     const number= agent.contexts[1].parameters["number.original"];
     
